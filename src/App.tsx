@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css'
+import './App.css';
 
 function App() {
 
@@ -14,18 +14,21 @@ function App() {
   })
 
   return (
-    <div>
+    <div className='main'>
         <div>
           <div className='container'>
-            <h1>Online Shop</h1>
+            <h1>Online Store</h1>
           </div>
           <ul>
             {fakeData.map((item) => (
-              <li key={item.id}>
-                <h2> {item.title}</h2>
-                <p>Description:</p> {item.description}
-                <div>
-                <img src={item.image} width='300px'/>
+              <li key={item.id} >
+                <h2 className='container'> {item.title}</h2>
+                <p className='container description'>{item.description}</p>
+                <div className='container'>
+                  <img src={item.image} width='200px'/>
+                </div>
+                <div className='container'>
+                  <h3>{item.price} $</h3>
                 </div>
               </li>
   ))}
