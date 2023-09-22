@@ -1,41 +1,41 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
+import { axiosInstance } from "./Api";
 
 function App() {
+  const [fakeData, setFakeData] = useState([]);
 
-  const [fakeData, setFakeData] = useState([])
-
-  useEffect(()=> {
-    axios.get('https://fakestoreapi.com/products')
-    .then (res => {
-      setFakeData(res.data);
+  useEffect(() => {
+    axiosInstance.get('/products').then(({ data }) => {
+      console.log(data);
+      setFakeData(data);
     })
-  })
+  });
+
 
   return (
-    <div className='main'>
-        <div>
-          <div className='container'>
-            <h1>Online Store</h1>
-          </div>
-          <ul>
-            {fakeData.map((item) => (
-              <li key={item.id} >
-                <h2 className='container'> {item.title}</h2>
-                <p className='container description'>{item.description}</p>
-                <div className='container'>
-                  <img src={item.image} width='200px'/>
-                </div>
-                <div className='container'>
-                  <h3>{item.price} $</h3>
-                </div>
-              </li>
-  ))}
-</ul>
+    <div className="main">
+      <div>
+        <div className="container">
+          <h1>Online Store</h1>
         </div>
+        <ul>
+          {fakeData.map((item) => (
+            <li key={item.id}>
+              <h2 className="container"> {item.title}</h2>
+              <p className="container description">{item.description}</p>
+              <div className="container">
+                <img src={item.image} width="200px" />
+              </div>
+              <div className="container">
+                <h3>{item.price} $</h3>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-    )
+  );
 }
 
-export default App
+export default App;
