@@ -6,12 +6,11 @@ function App() {
   const [fakeData, setFakeData] = useState([]);
 
   useEffect(() => {
-    axiosInstance.get('/products').then(({ data }) => {
+    axiosInstance.get("/products").then(({ data }) => {
       console.log(data);
       setFakeData(data);
-    })
+    });
   });
-
 
   return (
     <div className="main">
