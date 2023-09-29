@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../../Api";
-import styles from "./mainPage.module.css"
+import styles from "./mainPage.module.css";
 import NavBar from "../Components/NavBar/NavBar/navBar";
+import ProductCountSelector from "../Components/NavBar/NavBar/ProductCountSelector/productCountSelector";
+import ProductPage from "../Components/productsPage";
 
 export default function FirstPage() {
   const [fakeData, setFakeData] = useState([]);
 
   useEffect(() => {
     const abortController = new AbortController();
-    axiosInstance.get("/products/category/men's clothing").then((res) => {
+    axiosInstance.get("/products").then((res) => {
       setFakeData(res.data), { signal: abortController.signal };
     });
 
@@ -20,10 +22,15 @@ export default function FirstPage() {
 
   return (
     <div>
-      <NavBar/>
-      <div className={styles['mainPage']}>
+      <NavBar />
+      <div className={styles["mainPage"]}>
         <div className="container">
-          <h1>Online Store</h1>
+          <ProductCountSelector
+            onSelectionChange={function (value: number): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+          <ProductPage/>
           <ul>
             {fakeData.map((item) => (
               <li key={item.id}>

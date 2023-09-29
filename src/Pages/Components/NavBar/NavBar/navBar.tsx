@@ -3,8 +3,8 @@ import styles from './navBar.module.css'
 function NavBar() {
   return (
     <nav className={styles['navbar']}>
-      <span>Logo</span>
-      <span>My Cart</span>
+      <span>Fake Store</span>
+      <span>Shopping Cart</span>
     </nav>
   )
 }
